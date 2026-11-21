@@ -705,6 +705,7 @@ button:focus-visible {
 }
 
 .env__flap-back {
+  clip-path: polygon(0 100%, 100% 100%, 50% 0);
   transform: rotateX(180deg);
   background:
     repeating-linear-gradient(45deg, rgba(201, 161, 74, 0.32) 0 1px, transparent 1px 12px),
