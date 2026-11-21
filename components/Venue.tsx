@@ -25,6 +25,7 @@ export default function Venue({ photo }: { photo?: string }) {
   };
 
   return (
+    <>
     <Panel id="venue" tone="rose" rouge clusters={["tl", "br"]} butterflies={1}>
       <Frame>
         <p className="eyebrow">the</p>
@@ -37,7 +38,15 @@ export default function Venue({ photo }: { photo?: string }) {
         <button className="link" onClick={copy}>
           {copied ? "Address copied ✓" : "Copy address"}
         </button>
+      </Frame>
+    </Panel>
 
+    <Panel id="map" tone="velvet" clusters={["tr", "bl"]} butterflies={1}>
+      <Frame>
+        <p className="eyebrow">getting there</p>
+        <h2 className="script-title">
+          <Letters text="Directions" />
+        </h2>
         <div className="venue__map">
           <iframe src={mapsEmbed} title={`Map to ${venue.name}`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
         </div>
@@ -55,5 +64,6 @@ export default function Venue({ photo }: { photo?: string }) {
         </div>
       </Frame>
     </Panel>
+    </>
   );
 }

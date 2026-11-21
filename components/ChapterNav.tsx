@@ -8,11 +8,15 @@ const CHAPTERS = [
   { id: "date", label: "The Day" },
   { id: "note", label: "A Note" },
   { id: "program", label: "Program" },
+  { id: "moments", label: "Moments" },
   { id: "venue", label: "Venue" },
-  { id: "details", label: "Details" },
-  { id: "eighteens", label: "Eighteens" },
+  { id: "map", label: "Directions" },
+  { id: "details", label: "Dress Code" },
+  { id: "gifts", label: "Gifts" },
+  { id: "eighteens", label: "The 18s" },
   { id: "wish", label: "Wish" },
   { id: "rsvp", label: "RSVP" },
+  { id: "save", label: "Finale" },
 ];
 
 export default function ChapterNav() {
@@ -23,17 +27,30 @@ export default function ChapterNav() {
   useEffect(() => {
     const present = CHAPTERS.filter((c) => document.getElementById(c.id));
     setItems(present);
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) if (e.isIntersecting) setActive(e.target.id);
-      },
-      { rootMargin: "-45% 0px -45% 0px" },
-    );
-    present.forEach((c) => {
-      const el = document.getElementById(c.id);
-      if (el) io.observe(el);
-    });
-    return () => io.disconnect();
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const mid = window.innerHeight * 0.5;
+      let best = present[0]?.id ?? "top";
+      for (const c of present) {
+        const el = document.getElementById(c.id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid) best = c.id;
+      }
+      setActive((prev) => (prev === best ? prev : best));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (

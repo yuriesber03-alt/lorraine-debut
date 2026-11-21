@@ -36,6 +36,7 @@ export default function Panel({
 }: Props) {
   const ref = useRef<HTMLElement>(null);
   const [shown, setShown] = useState(false);
+  const [vis, setVis] = useState(false);
   const phase = usePhase();
   const on = shown && (!live || phase === "live");
 
@@ -52,11 +53,16 @@ export default function Panel({
       { threshold: 0.18 },
     );
     io.observe(el);
-    return () => io.disconnect();
+    const vio = new IntersectionObserver(([e]) => setVis(e.isIntersecting), { rootMargin: "10% 0px 10% 0px" });
+    vio.observe(el);
+    return () => {
+      io.disconnect();
+      vio.disconnect();
+    };
   }, []);
 
   return (
-    <section ref={ref} id={id} data-panel data-tone={tone} data-in={on ? "1" : "0"} className={`panel ${className}`}>
+    <section ref={ref} id={id} data-panel data-tone={tone} data-in={on ? "1" : "0"} data-vis={vis ? "1" : "0"} className={`panel ${className}`}>
       <div className="panel__bg" aria-hidden>
         <div className="bokeh bokeh--a" />
         <div className="bokeh bokeh--b" />

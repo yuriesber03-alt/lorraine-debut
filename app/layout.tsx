@@ -6,7 +6,7 @@ import "./sections.css";
 import "./royal.css";
 
 const script = Great_Vibes({ subsets: ["latin"], weight: "400", variable: "--font-script", display: "swap" });
-const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"], variable: "--font-serif", display: "swap" });
+const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600", "700"], style: ["normal", "italic"], variable: "--font-serif", display: "swap" });
 const sans = Montserrat({ subsets: ["latin"], weight: ["300", "400", "500"], variable: "--font-sans", display: "swap" });
 
 const caps = Cinzel({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-caps", display: "swap" });

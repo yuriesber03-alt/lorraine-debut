@@ -21,6 +21,7 @@ export default function Details() {
   const fx = useFx();
 
   return (
+    <>
     <Panel id="details" tone="velvet" clusters={["tr", "bl"]} butterflies={1}>
       <Frame>
         <p className="eyebrow">the</p>
@@ -67,8 +68,11 @@ export default function Details() {
           ))}
         </ul>
 
-        <div className="divider" />
+      </Frame>
+    </Panel>
 
+    <Panel id="gifts" tone="rose" rouge clusters={["tl", "br"]} butterflies={1}>
+      <Frame>
         <svg className="gift" viewBox="0 0 64 64" aria-hidden>
           <rect x="8" y="26" width="48" height="30" rx="2" />
           <rect x="5" y="18" width="54" height="10" rx="2" />
@@ -79,5 +83,6 @@ export default function Details() {
         <p className="eyebrow mt">Thank you for your love and generosity!</p>
       </Frame>
     </Panel>
+    </>
   );
 }

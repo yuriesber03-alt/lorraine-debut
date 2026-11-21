@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 type Spark = { left: number; top: number; dur: number; delay: number; pink: boolean };
 
-export default function Sparkles({ count = 36 }: { count?: number }) {
+export default function Sparkles({ count = 14 }: { count?: number }) {
   const [sparks, setSparks] = useState<Spark[]>([]);
 
   // Generated on the client only, so server and client HTML match.

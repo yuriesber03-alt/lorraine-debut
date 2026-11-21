@@ -890,8 +890,8 @@
 /* ---------- Wish / cake ---------- */
 .cake {
   display: block;
-  width: min(100%, 430px);
-  margin: 1.5rem auto 0.5rem;
+  width: min(100%, 340px);
+  margin: 0.5rem auto 0.25rem;
   padding: 0;
   background: none;
   border: 0;
@@ -902,7 +902,6 @@
   width: 100%;
   height: auto;
   overflow: visible;
-  filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.5));
 }
 
 .cake__text {
