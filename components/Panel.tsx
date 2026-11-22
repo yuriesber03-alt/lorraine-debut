@@ -70,14 +70,11 @@ export default function Panel({
       </div>
 
       {drapes && (
-        <>
-          <div className="drape drape--l" aria-hidden>
-            <div className="drape__cloth" />
-          </div>
-          <div className="drape drape--r" aria-hidden>
-            <div className="drape__cloth" />
-          </div>
-        </>
+        <div className="arches" aria-hidden>
+          <i className="arch arch--l" />
+          <i className="arch arch--r" />
+          <i className="arch arch--c" />
+        </div>
       )}
 
       {chandelier && (

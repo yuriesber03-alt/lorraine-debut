@@ -280,23 +280,69 @@ export function Chandelier({ className = "" }: { className?: string }) {
   );
 }
 
-/* ---------------------------- Rose cluster ---------------------------- */
+/* ---------------------------- Pampas ---------------------------- */
+
+const STEMS: { x: number; tip: [number, number]; lean: number; len: number }[] = [
+  { x: 60, tip: [22, 40], lean: -26, len: 46 },
+  { x: 60, tip: [44, 18], lean: -10, len: 52 },
+  { x: 60, tip: [64, 10], lean: 2, len: 56 },
+  { x: 60, tip: [86, 20], lean: 14, len: 50 },
+  { x: 60, tip: [102, 42], lean: 28, len: 44 },
+];
+
+export function Pampas({ className = "", style }: { className?: string; style?: Style }) {
+  return (
+    <svg className={`pampas ${className}`} viewBox="0 0 120 170" style={style} aria-hidden>
+      {STEMS.map((s, i) => {
+        const [tx, ty] = s.tip;
+        const feathers = Array.from({ length: 11 }, (_, f) => {
+          const t = f / 10;
+          const bx = 60 + (tx - 60) * (0.55 + t * 0.45);
+          const by = 170 - (170 - ty) * (0.55 + t * 0.45);
+          const ang = ((s.lean + (f % 2 ? 38 : -38)) * Math.PI) / 180;
+          return `M${bx.toFixed(1)} ${by.toFixed(1)} l${(Math.sin(ang) * 18).toFixed(1)} ${(-Math.cos(ang) * 18).toFixed(1)}`;
+        });
+        return (
+          <g key={i}>
+            <path d={`M60 170 Q ${(60 + tx) / 2} ${(170 + ty) / 2 + 10} ${tx} ${ty}`} fill="none" stroke="#c8a878" strokeWidth="1.2" />
+            <path d={feathers.join(" ")} fill="none" stroke="#d9bd92" strokeWidth="1" strokeLinecap="round" opacity=".9" />
+            <ellipse cx={tx} cy={ty + 4} rx="9" ry="20" fill="#ead7b8" opacity=".5" transform={`rotate(${s.lean} ${tx} ${ty + 4})`} />
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+/* ---------------------------- Balloon garland + florals ---------------------------- */
 
 export type Anchor = "tl" | "tr" | "bl" | "br";
 
-/** A lush cluster anchored to a panel corner. Flipping and parallax are done in CSS. */
-export function Cluster({ corner, tone = "blush", className = "" }: { corner: Anchor; tone?: "blush" | "rouge"; className?: string }) {
-  const accent: RoseTone = tone === "rouge" ? "blush" : "ivory";
+const BALLOONS: { s: number; x: number; y: number; c: "gold" | "blush" | "cream" | "champ" }[] = [
+  { s: 74, x: -22, y: -18, c: "gold" },
+  { s: 60, x: 50, y: -28, c: "blush" },
+  { s: 88, x: -28, y: 54, c: "cream" },
+  { s: 52, x: 58, y: 34, c: "gold" },
+  { s: 66, x: 104, y: 6, c: "cream" },
+  { s: 44, x: 14, y: 140, c: "blush" },
+  { s: 38, x: 124, y: 62, c: "champ" },
+];
+
+/** A balloon-and-bloom corner garland, in the spirit of an arch backdrop. */
+export function Cluster({ corner, className = "" }: { corner: Anchor; tone?: "blush" | "rouge"; className?: string }) {
   const k = (n: number) => ({ "--k": n }) as Style;
   return (
     <div className={`cluster cluster--${corner} ${className}`} aria-hidden>
       <div className="cluster__inner">
+        <Pampas className="cluster__pampas cluster__pampas--a" />
+        <Pampas className="cluster__pampas cluster__pampas--b" />
+        {BALLOONS.map((b, i) => (
+          <i key={i} className={`balloon balloon--${b.c}`} style={{ "--s": `${b.s}px`, left: b.x, top: b.y, "--k": i } as Style} />
+        ))}
+        <Rose tone="blush" size={88} className="cluster__rose cluster__rose--1" style={k(0)} rotate={8} />
+        <Rose tone="ivory" size={64} className="cluster__rose cluster__rose--2" style={k(1)} rotate={24} />
+        <Rose tone="blush" size={46} className="cluster__rose cluster__rose--3" style={k(2)} rotate={-14} />
         <Sprig className="cluster__sprig cluster__sprig--a" />
-        <Sprig className="cluster__sprig cluster__sprig--b" />
-        <Rose tone={tone} size={150} className="cluster__rose cluster__rose--1" style={k(0)} rotate={8} />
-        <Rose tone={accent} size={112} className="cluster__rose cluster__rose--2" style={k(1)} rotate={24} />
-        <Rose tone="blush" size={84} className="cluster__rose cluster__rose--3" style={k(2)} rotate={-14} />
-        <Rose tone={tone === "rouge" ? "rouge" : "ivory"} size={54} className="cluster__rose cluster__rose--4" style={k(3)} rotate={30} />
       </div>
     </div>
   );
