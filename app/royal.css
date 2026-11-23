@@ -1004,13 +1004,14 @@ body.locked { scroll-snap-type: none; }
    ART MODE PASS — light blush / rose-gold type that sits INSIDE the painted arch
    ===================================================================== */
 .panel[data-art="1"] {
-  --ink-t: #5b3f45;
-  --ink-dim: rgba(91, 63, 69, 0.86);
-  --rose-t: #c0697f;
-  --gold-ink: #a4752f;
-  --gold-foil-dk: linear-gradient(135deg, #a8704f 0%, #d79a7e 34%, #efc3a8 50%, #c78566 70%, #a8704f 100%);
+  --W: min(100vw, 520px);
+  --ink-t: #5a382e;
+  --ink-dim: rgba(90, 56, 46, 0.86);
+  --rose-t: #9c5242;
+  --gold-ink: #7e4a2a;
+  --gold-foil-dk: linear-gradient(135deg, #8f5640 0%, #c98467 34%, #e6b196 50%, #b3705a 70%, #8f5640 100%);
   /* the arch interior starts ~37% down the painting and is ~58% as wide as the panel */
-  padding: clamp(14rem, 41svh, 26rem) 20% clamp(3.5rem, 9svh, 5.5rem);
+  padding: max(30svh, calc(var(--W) * 0.52)) 22% max(14svh, calc(var(--W) * 0.3));
   align-content: start;
   contain: paint;
 }
@@ -1021,7 +1022,7 @@ body.locked { scroll-snap-type: none; }
   filter: none;
   line-height: 1.1;
   background: none; -webkit-background-clip: border-box; background-clip: border-box;
-  color: #c4825f;
+  color: #a65f48;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 .panel[data-art="1"] .frame .eyebrow { font-size: 0.62rem; letter-spacing: 0.3em; color: var(--rose-t); }
@@ -1030,12 +1031,18 @@ body.locked { scroll-snap-type: none; }
 .panel[data-art="1"] .frame li { text-wrap: balance; }
 
 /* no maroon placeholders / cut-off monogram on painted panels */
-.panel[data-art="1"] .photo--empty,
+.panel#top[data-art="1"] .photo--empty,
 .panel[data-art="1"] .cameo:has(.photo--empty) { display: none; }
+.panel[data-art="1"] .photo__placeholder {
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.6), rgba(247, 205, 190, 0.6) 70%), #f6d5c6;
+}
+.panel[data-art="1"] .photo__mat { background: linear-gradient(#f6d5c6, #f6d5c6) padding-box, var(--gold-foil) border-box; border-width: 3px; }
+.panel[data-art="1"] .photo__mono { background: var(--gold-foil-dk); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.panel[data-art="1"] .photo__placeholder small { color: var(--rose-t); }
 .panel[data-art="1"] .cameo + .frame { margin-top: 0; }
 
 /* hero */
-.panel#top[data-art="1"] { padding-top: clamp(14rem, 41svh, 26rem); }
+.panel#top[data-art="1"] { padding-top: max(30svh, calc(var(--W) * 0.52)); }
 .panel[data-art="1"] .hero { gap: 0.55rem; }
 .panel[data-art="1"] .hero__arch { width: 100%; }
 .panel[data-art="1"] .hero__arch .photo { aspect-ratio: 3 / 3.4; max-width: 230px; margin: 0 auto 0.4rem; }
@@ -1048,8 +1055,8 @@ body.locked { scroll-snap-type: none; }
 .panel[data-art="1"] .hero__name {
   font-size: clamp(3.6rem, 17vw, 5rem);
   background: none; -webkit-background-clip: border-box; background-clip: border-box;
-  color: #c4825f;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85), 0 2px 10px rgba(196, 130, 95, 0.25);
+  color: #a65f48;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6), 0 2px 10px rgba(166, 95, 72, 0.22);
 }
 .panel[data-art="1"] .hero__age { color: var(--gold-ink); font-size: 2rem; }
 .panel[data-art="1"] .hero__at { color: var(--rose-t); }
@@ -1082,7 +1089,7 @@ body.locked { scroll-snap-type: none; }
 
 /* phones: lighter, still pretty */
 @media (max-width: 760px) {
-  .panel[data-art="1"] { padding-inline: 19%; }
+  .panel[data-art="1"] { padding-inline: 21%; }
   .panel[data-art="1"] .panel__bg { scale: 1 !important; transition: none !important; }
   .sparkles, .panel[data-art="1"] .scroll-cue span { display: none; }
   .panel[data-art="1"] .frame { translate: 0 20px; scale: 1; transition: opacity 0.7s ease, translate 0.9s var(--ease); }
@@ -1094,3 +1101,71 @@ body.locked { scroll-snap-type: none; }
 .panel[data-art="1"] .bf { will-change: auto; }
 .panel[data-art="1"] .hero__date { letter-spacing: 0.18em; }
 .panel[data-art="1"] .hero__date i { display: block; font-size: 0; height: 0.35rem; margin: 0; }
+
+/* program: compact so 7 rows fit inside the arch */
+#program[data-art="1"] { padding-top: max(27svh, calc(var(--W) * 0.46)); }
+#program[data-art="1"] .muted { display: none; }
+#program[data-art="1"] .tl { margin-top: 0.7rem; gap: 0.55rem; }
+#program[data-art="1"] .tl__item::before { display: none; }
+#program[data-art="1"] .tl__time { font-size: 0.6rem; }
+#program[data-art="1"] .tl__item h3 { font-size: 1.02rem; }
+#program[data-art="1"] .tl__item p { font-size: 0.76rem; line-height: 1.25; }
+
+/* gallery (not inside a Frame) */
+.panel[data-art="1"] .gal { width: 100%; }
+.panel[data-art="1"] .gal .eyebrow { color: var(--rose-t); font-size: 0.62rem; }
+.panel[data-art="1"] .gal .script-title { color: #a65f48; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85); font-size: clamp(2.3rem, 1.6rem + 3.4vw, 3.2rem); background: none; -webkit-background-clip: border-box; background-clip: border-box; }
+.panel[data-art="1"] .gal .muted,
+.panel[data-art="1"] .gal__hint { color: var(--ink-dim); }
+
+/* painted cover scene (public/art/cover-scene.jpg) — the card slides out of the envelope */
+.cscene {
+  position: relative;
+  display: block;
+  width: min(80vw, 420px);
+  max-height: 66svh;
+  aspect-ratio: 765 / 1024;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cs { position: absolute; inset: 0; display: block; }
+.cs__b,
+.cs__a {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  user-select: none;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 66% 64% at 50% 50%, #000 58%, transparent 100%);
+  mask-image: radial-gradient(ellipse 66% 64% at 50% 50%, #000 58%, transparent 100%);
+}
+/* base: whole picture except the card's top rectangle */
+.cs__b { clip-path: polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 24.4% 11%, 75.8% 11%, 75.8% 35.5%, 24.4% 35.5%, 24.4% 11%); }
+/* paper that is revealed as the card slides up */
+.cs__fill {
+  position: absolute;
+  left: 24.6%; right: 24.4%; top: 12%; height: 25%;
+  background: linear-gradient(180deg, #f8f5ee, #f3eee4);
+}
+/* the card itself */
+.cs__a {
+  clip-path: inset(11% 24.3% 65.5% 24.4%);
+  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s;
+  will-change: transform;
+}
+.cover--idle .cscene { animation: floaty 5s ease-in-out infinite; }
+.cover--crack .cs__b { animation: csPop 0.65s var(--ease); }
+@keyframes csPop { 40% { transform: scale(1.025); } }
+.cover--open .cs__a { transform: translateY(-17%); }
+.cover--rise .cs__a { transform: translateY(-21%) scale(1.05); transition-duration: 1.2s; }
+.cover--open .cs__b,
+.cover--rise .cs__b { transform: translateY(2.5%) scale(0.985); transition: transform 1.4s var(--ease); }
+.cover--open .cs__fill,
+.cover--rise .cs__fill { transform: translateY(0); }
+.cscene .cs__fill { transition: opacity 0.4s; }
+.env[hidden] { display: none; }

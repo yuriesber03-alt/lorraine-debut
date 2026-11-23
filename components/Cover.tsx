@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAudio } from "./AudioProvider";
 import { useFx } from "./FxLayer";
 import { useGuest } from "@/lib/hooks";
+import { useArt } from "./ArtContext";
 import { invitation } from "@/config/invitation";
 import { longDate, startDate } from "@/lib/format";
 
@@ -14,6 +15,7 @@ export default function Cover() {
   const guest = useGuest();
   const audio = useAudio();
   const fx = useFx();
+  const scene = useArt()["cover-scene"];
   const timers = useRef<number[]>([]);
   const sealRef = useRef<HTMLButtonElement>(null);
   const started = useRef(false);
@@ -66,16 +68,16 @@ export default function Cover() {
       setPhase("rise");
       audio.sfx("sparkle");
     });
-    later(3000, () => {
+    later(3350, () => {
       setPhase("zoom");
       audio.sfx("chime");
       root.dataset.phase = "zooming";
     });
-    later(3700, () => {
+    later(3750, () => {
       root.dataset.phase = "live";
       fx.burst(window.innerWidth / 2, window.innerHeight * 0.42, "mix", 1.2);
     });
-    later(4700, finish);
+    later(4900, finish);
   };
 
   if (phase === "done") return null;
@@ -89,7 +91,19 @@ export default function Cover() {
       <div className="scene" onClick={open}>
         <p className="cover__kicker">{invitation.coverText}</p>
 
-        <div className="env">
+        {scene && (
+          <button ref={sealRef} className="cscene" onClick={open} aria-label="Open the invitation">
+            <span className="cs">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="cs__b" src={scene} alt="" decoding="async" fetchPriority="high" draggable={false} />
+              <i className="cs__fill" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="cs__a" src={scene} alt="" decoding="async" draggable={false} />
+            </span>
+          </button>
+        )}
+
+        <div className="env" hidden={!!scene}>
           <div className="env__back" />
 
           <div className="env__letter">
@@ -118,7 +132,7 @@ export default function Cover() {
             <div className="env__flap-back" />
           </div>
 
-          <button ref={sealRef} className="seal" onClick={open} aria-label="Break the seal to open the invitation">
+          <button ref={scene ? undefined : sealRef} className="seal" onClick={open} aria-label="Break the seal to open the invitation">
             <span className="seal__half seal__half--l">{initial}</span>
             <span className="seal__half seal__half--r">{initial}</span>
           </button>
