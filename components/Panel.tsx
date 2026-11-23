@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Butterfly, Chandelier, Cluster, type Anchor } from "./Art";
 import { usePhase } from "@/lib/hooks";
+import { useArt } from "./ArtContext";
 
 export type Tone = "velvet" | "rose" | "noir";
 
@@ -38,6 +39,8 @@ export default function Panel({
   const [shown, setShown] = useState(false);
   const [vis, setVis] = useState(false);
   const phase = usePhase();
+  const art = useArt();
+  const bg = (id && art[`panel-${id}`]) || art.panel;
   const on = shown && (!live || phase === "live");
 
   useEffect(() => {
@@ -62,7 +65,7 @@ export default function Panel({
   }, []);
 
   return (
-    <section ref={ref} id={id} data-panel data-tone={tone} data-in={on ? "1" : "0"} data-vis={vis ? "1" : "0"} className={`panel ${className}`}>
+    <section ref={ref} id={id} data-panel data-tone={tone} data-in={on ? "1" : "0"} data-vis={vis ? "1" : "0"} data-art={bg ? "1" : undefined} style={bg ? ({ "--bg-art": `url(${bg})` } as React.CSSProperties) : undefined} className={`panel ${className}`}>
       <div className="panel__bg" aria-hidden>
         <div className="bokeh bokeh--a" />
         <div className="bokeh bokeh--b" />

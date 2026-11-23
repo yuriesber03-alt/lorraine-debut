@@ -957,3 +957,45 @@ body.locked { scroll-snap-type: none; }
 .panel[data-tone="noir"] .script-title { color: #f1d3c4; text-shadow: 0 2px 14px rgba(233, 185, 168, 0.35); }
 .panel[data-tone="noir"] .muted { color: rgba(247, 236, 233, 0.8); }
 .gal .script-title { color: #f1d3c4; }
+
+/* =====================================================================
+   ILLUSTRATED ART SLOTS (optional, from /public/art)
+   ===================================================================== */
+.art-root { display: contents; }
+
+/* full-bleed painted scene behind a panel; the frame is part of the picture */
+.panel[data-art="1"] .panel__bg {
+  background: var(--bg-art) center top / cover no-repeat, #0b0809;
+  scale: 1.06;
+  transition: scale 2.2s var(--ease);
+}
+.panel[data-art="1"][data-in="1"] .panel__bg { scale: 1; }
+.panel[data-art="1"] .arches,
+.panel[data-art="1"] .cluster,
+.panel[data-art="1"] .bf,
+.panel[data-art="1"] .panel__chandelier,
+.panel[data-art="1"] .bokeh,
+.panel[data-art="1"] .vignette,
+.panel[data-art="1"]::before,
+.panel[data-art="1"] .panel__bg::before,
+.panel[data-art="1"] .panel__bg::after,
+.panel[data-art="1"] .frame__paper,
+.panel[data-art="1"] .frame__line,
+.panel[data-art="1"] .frame .corner,
+.panel[data-art="1"] .frame__crest,
+.panel[data-art="1"] .frame__shine { display: none; }
+.panel[data-art="1"] .frame { padding: 2rem 0.5rem; max-width: 340px; }
+
+/* envelope */
+.art-root[data-art~="cover-bg"] .cover__bg { background: var(--art-cover-bg) center / cover no-repeat, #070607; }
+.art-root[data-art~="envelope-back"] .env__back { background: var(--art-envelope-back) center / 100% 100% no-repeat; border-radius: 0; }
+.art-root[data-art~="envelope-front"] .env__pocket { background: var(--art-envelope-front) center / 100% 100% no-repeat; border-radius: 0; }
+.art-root[data-art~="envelope-front"] .env__pocket svg { display: none; }
+.art-root[data-art~="flap"] .env__flap-front { background: var(--art-flap) center / 100% 100% no-repeat; }
+.art-root[data-art~="letter"] .env__letter { background: var(--art-letter) center / 100% 100% no-repeat; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+.art-root[data-art~="seal"] .seal__half {
+  background: var(--art-seal) center / contain no-repeat;
+  box-shadow: none;
+  font-size: 0;
+  border-radius: 0;
+}

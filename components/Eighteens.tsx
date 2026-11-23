@@ -13,7 +13,7 @@ export default function Eighteens() {
         return (
           <Panel
             key={g.title}
-            id={i === 0 ? "eighteens" : undefined}
+            id={i === 0 ? "eighteens" : `eighteens-${i + 1}`}
             tone={alt ? "rose" : "velvet"}
             rouge={alt}
             clusters={alt ? ["tr", "bl"] : ["tl", "br"]}
