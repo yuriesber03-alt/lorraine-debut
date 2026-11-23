@@ -1122,8 +1122,7 @@ body.locked { scroll-snap-type: none; }
 .cscene {
   position: relative;
   display: block;
-  width: min(80vw, 420px);
-  max-height: 66svh;
+  width: min(80vw, 420px, calc(68svh * 0.747));
   aspect-ratio: 765 / 1024;
   padding: 0;
   border: 0;
@@ -1145,27 +1144,22 @@ body.locked { scroll-snap-type: none; }
   mask-image: radial-gradient(ellipse 66% 64% at 50% 50%, #000 58%, transparent 100%);
 }
 /* base: whole picture except the card's top rectangle */
-.cs__b { clip-path: polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 24.4% 11%, 75.8% 11%, 75.8% 35.5%, 24.4% 35.5%, 24.4% 11%); }
+.cs__b { clip-path: polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 24.6% 12.9%, 75.6% 12.9%, 75.6% 27%, 74.7% 27%, 74.7% 35.5%, 25.4% 35.5%, 25.4% 27%, 24.6% 27%, 24.6% 12.9%); }
 /* paper that is revealed as the card slides up */
 .cs__fill {
   position: absolute;
-  left: 24.6%; right: 24.4%; top: 12%; height: 25%;
-  background: linear-gradient(180deg, #f8f5ee, #f3eee4);
+  inset: 0; clip-path: polygon(24.7% 13%, 75.4% 13%, 75.4% 27%, 74.7% 27%, 74.7% 38.5%, 25.4% 38.5%, 25.4% 27%, 24.7% 27%);
+  background: linear-gradient(180deg, #f7f7f2, #f5f4ee);
 }
 /* the card itself */
 .cs__a {
-  clip-path: inset(11% 24.3% 65.5% 24.4%);
+  clip-path: polygon(24.7% 13%, 75.4% 13%, 75.4% 27%, 74.7% 27%, 74.7% 34.5%, 25.4% 34.5%, 25.4% 27%, 24.7% 27%);
   transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s;
   will-change: transform;
 }
 .cover--idle .cscene { animation: floaty 5s ease-in-out infinite; }
 .cover--crack .cs__b { animation: csPop 0.65s var(--ease); }
 @keyframes csPop { 40% { transform: scale(1.025); } }
-.cover--open .cs__a { transform: translateY(-17%); }
-.cover--rise .cs__a { transform: translateY(-21%) scale(1.05); transition-duration: 1.2s; }
-.cover--open .cs__b,
-.cover--rise .cs__b { transform: translateY(2.5%) scale(0.985); transition: transform 1.4s var(--ease); }
-.cover--open .cs__fill,
-.cover--rise .cs__fill { transform: translateY(0); }
-.cscene .cs__fill { transition: opacity 0.4s; }
+.cover--open .cs__a { transform: translateY(-16%); }
+.cover--rise .cs__a { transform: translateY(-20%); transition-duration: 1.2s; }
 .env[hidden] { display: none; }
