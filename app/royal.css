@@ -1144,16 +1144,16 @@ body.locked { scroll-snap-type: none; }
   mask-image: radial-gradient(ellipse 66% 64% at 50% 50%, #000 58%, transparent 100%);
 }
 /* base: whole picture except the card's top rectangle */
-.cs__b { clip-path: polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 24.6% 12.9%, 75.6% 12.9%, 75.6% 27%, 74.7% 27%, 74.7% 35.5%, 25.4% 35.5%, 25.4% 27%, 24.6% 27%, 24.6% 12.9%); }
+.cs__b { clip-path: polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 24.9% 12.9%, 75.2% 12.9%, 75.2% 35.5%, 24.9% 35.5%, 24.9% 12.9%); }
 /* paper that is revealed as the card slides up */
 .cs__fill {
   position: absolute;
-  inset: 0; clip-path: polygon(24.7% 13%, 75.4% 13%, 75.4% 27%, 74.7% 27%, 74.7% 38.5%, 25.4% 38.5%, 25.4% 27%, 24.7% 27%);
+  inset: 0; clip-path: inset(13% 24.8% 64.1% 24.9%);
   background: linear-gradient(180deg, #f7f7f2, #f5f4ee);
 }
 /* the card itself */
 .cs__a {
-  clip-path: polygon(24.7% 13%, 75.4% 13%, 75.4% 27%, 74.7% 27%, 74.7% 34.5%, 25.4% 34.5%, 25.4% 27%, 24.7% 27%);
+  clip-path: inset(13% 24.8% 65.5% 24.9%);
   transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s;
   will-change: transform;
 }
