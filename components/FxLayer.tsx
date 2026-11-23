@@ -126,7 +126,7 @@ export function FxProvider({ children }: { children: React.ReactNode }) {
     let last = performance.now();
     const petals: Petal[] = [];
 
-    const target = () => (reducedRef.current ? 0 : Math.max(8, Math.min(18, Math.round((w * h) / 90000))));
+    const target = () => (reducedRef.current ? 0 : w < 760 ? 5 : Math.max(8, Math.min(14, Math.round((w * h) / 90000))));
 
     const spawn = (initial: boolean): Petal => ({
       x: Math.random() * w,
@@ -143,7 +143,7 @@ export function FxProvider({ children }: { children: React.ReactNode }) {
     });
 
     const resize = () => {
-      dpr = Math.min(1.5, window.devicePixelRatio || 1);
+      dpr = window.innerWidth < 760 ? 1 : Math.min(1.5, window.devicePixelRatio || 1);
       w = window.innerWidth;
       h = window.innerHeight;
       canvas.width = Math.round(w * dpr);
