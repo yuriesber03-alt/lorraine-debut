@@ -4,7 +4,11 @@
    ===================================================================== */
 
 export type Person = { name: string; role?: string };
-export type EighteenGroup = { title: string; subtitle?: string; people: Person[] };
+export type EighteenGroup = {
+  title: string;
+  subtitle?: string;
+  people: Person[];
+};
 export type Swatch = { name: string; hex: string };
 export type ProgramItem = { time: string; title: string; note?: string };
 
@@ -52,7 +56,7 @@ export const invitation: InvitationConfig = {
     end: "2026-12-21T20:00:00+08:00", // TODO: confirm end time
   },
 
-  music: { src: "", title: "Stacey's Lullaby" },
+  music: { title: "Blooming at Eighteen", src: "/audio/song.mp3" },
 
   venue: {
     name: "Manuel's Restaurant",
@@ -71,19 +75,40 @@ export const invitation: InvitationConfig = {
 
   // TODO: confirm the real program and times
   program: [
-    { time: "3:00 PM", title: "Guest arrival", note: "Registration and welcome drinks" },
-    { time: "3:30 PM", title: "Grand entrance", note: "The celebrant makes her entrance" },
+    {
+      time: "3:00 PM",
+      title: "Guest arrival",
+      note: "Registration and welcome drinks",
+    },
+    {
+      time: "3:30 PM",
+      title: "Grand entrance",
+      note: "The celebrant makes her entrance",
+    },
     { time: "4:00 PM", title: "Dinner", note: "Good food, better company" },
-    { time: "5:00 PM", title: "18 Roses", note: "Dances with the special men in her life" },
-    { time: "6:00 PM", title: "18 Candles", note: "Messages and wishes from loved ones" },
+    {
+      time: "5:00 PM",
+      title: "18 Roses",
+      note: "Dances with the special men in her life",
+    },
+    {
+      time: "6:00 PM",
+      title: "18 Candles",
+      note: "Messages and wishes from loved ones",
+    },
     { time: "7:00 PM", title: "Cake & toast", note: "Make a wish with us" },
-    { time: "7:30 PM", title: "Party time", note: "Photos, games and the dance floor" },
+    {
+      time: "7:30 PM",
+      title: "Party time",
+      note: "Photos, games and the dance floor",
+    },
   ],
 
   gallery: [],
 
   dressCode: {
-    guests: "Semi-formal attire in blush pink, black, or gold. Polished and elegant, please.",
+    guests:
+      "Semi-formal attire in blush pink, black, or gold. Polished and elegant, please.",
     roses: "Black suit or tuxedo, with a blush pink or gold accent.",
     girls: "Blush pink or gold semi-formal dress.",
   },
@@ -98,11 +123,42 @@ export const invitation: InvitationConfig = {
     "Your presence is the greatest gift. But if you wish to give something, a little note of what Stacey would appreciate goes here.", // TODO
 
   eighteens: [
-    { title: "Candles", subtitle: "Wishes", people: [{ name: "Guest One" }, { name: "Guest Two" }, { name: "Guest Three", role: "Mother" }] },
-    { title: "Treasures", subtitle: "Gifts", people: [{ name: "Guest One" }, { name: "Guest Two" }] },
-    { title: "Roses", subtitle: "Dances", people: [{ name: "Guest One" }, { name: "Guest Two", role: "Grandfather" }, { name: "Guest Three", role: "Father" }] },
-    { title: "Blue Bills", subtitle: "Blessings", people: [{ name: "Guest One" }, { name: "Guest Two", role: "Grandmother" }] },
-    { title: "Cheers", subtitle: "Toasts", people: [{ name: "Guest One" }, { name: "Guest Two" }] },
+    {
+      title: "Candles",
+      subtitle: "Wishes",
+      people: [
+        { name: "Guest One" },
+        { name: "Guest Two" },
+        { name: "Guest Three", role: "Mother" },
+      ],
+    },
+    {
+      title: "Treasures",
+      subtitle: "Gifts",
+      people: [{ name: "Guest One" }, { name: "Guest Two" }],
+    },
+    {
+      title: "Roses",
+      subtitle: "Dances",
+      people: [
+        { name: "Guest One" },
+        { name: "Guest Two", role: "Grandfather" },
+        { name: "Guest Three", role: "Father" },
+      ],
+    },
+    {
+      title: "Blue Bills",
+      subtitle: "Blessings",
+      people: [
+        { name: "Guest One" },
+        { name: "Guest Two", role: "Grandmother" },
+      ],
+    },
+    {
+      title: "Cheers",
+      subtitle: "Toasts",
+      people: [{ name: "Guest One" }, { name: "Guest Two" }],
+    },
   ],
 
   wish: {

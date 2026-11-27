@@ -1865,3 +1865,10 @@ body.locked { scroll-snap-type: none; }
 #program .tl__item p { display: none !important; }
 #program .tl__time { font-size: 0.6em !important; line-height: 1.2 !important; display: block; }
 #program .tl__item h3 { font-size: 1.05em !important; line-height: 1.15 !important; margin: 0 !important; }
+/* ===== v18: date section fits the arch ===== */
+#date .panel__body { top: 25% !important; bottom: 19% !important; justify-content: flex-start !important; padding-top: 0.4em !important; }
+#date .cal { zoom: 0.72 !important; margin: 0 auto 0.3em !important; }
+#date .date-big, #date .frame h3, #date .divider, #date .eyebrow { display: none !important; }
+#date .date-sub { font-size: 0.62em !important; margin: 0 0 0.3em !important; }
+#date .muted { font-size: 0.8em !important; margin: 0 0 0.3em !important; }
+#date .btn { font-size: 0.6em !important; min-height: 2.2em !important; margin-top: 0.3em !important; }

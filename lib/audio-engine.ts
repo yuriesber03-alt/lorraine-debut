@@ -5,7 +5,14 @@
    If a real song is configured it plays that instead of the lullaby.
    ===================================================================== */
 
-export type SfxName = "crack" | "paper" | "chime" | "candle" | "blow" | "tick" | "sparkle";
+export type SfxName =
+  | "crack"
+  | "paper"
+  | "chime"
+  | "candle"
+  | "blow"
+  | "tick"
+  | "sparkle";
 
 const BPM = 74;
 const EIGHTH = 60 / BPM / 2;
@@ -37,14 +44,46 @@ const PAD: number[][] = [
 ];
 // [midi, eighth index inside the bar]
 const MELODY: [number, number][][] = [
-  [[84, 0], [79, 4], [81, 6]],
-  [[81, 0], [84, 4], [83, 6]],
-  [[84, 0], [81, 4], [77, 6]],
-  [[83, 0], [79, 4], [74, 6]],
-  [[84, 0], [88, 4], [86, 6]],
-  [[83, 0], [79, 4], [76, 6]],
-  [[81, 0], [84, 4], [86, 6]],
-  [[83, 0], [86, 4], [79, 6]],
+  [
+    [84, 0],
+    [79, 4],
+    [81, 6],
+  ],
+  [
+    [81, 0],
+    [84, 4],
+    [83, 6],
+  ],
+  [
+    [84, 0],
+    [81, 4],
+    [77, 6],
+  ],
+  [
+    [83, 0],
+    [79, 4],
+    [74, 6],
+  ],
+  [
+    [84, 0],
+    [88, 4],
+    [86, 6],
+  ],
+  [
+    [83, 0],
+    [79, 4],
+    [76, 6],
+  ],
+  [
+    [81, 0],
+    [84, 4],
+    [86, 6],
+  ],
+  [
+    [83, 0],
+    [86, 4],
+    [79, 6],
+  ],
 ];
 
 type WindowWithWebkit = Window & { webkitAudioContext?: typeof AudioContext };
@@ -70,7 +109,8 @@ export class AudioEngine {
   unlock(): boolean {
     if (typeof window === "undefined") return false;
     if (!this.ctx) {
-      const Ctor = window.AudioContext || (window as WindowWithWebkit).webkitAudioContext;
+      const Ctor =
+        window.AudioContext || (window as WindowWithWebkit).webkitAudioContext;
       if (!Ctor) return false;
       const ctx = new Ctor();
       this.ctx = ctx;
@@ -120,7 +160,12 @@ export class AudioEngine {
       el.volume = 0;
       el.muted = this.muted;
       this.fileEl = el;
-      void el.play().catch(() => {});
+      el.addEventListener("error", () =>
+        console.error("[audio] failed to load", src, el.error),
+      );
+      void el
+        .play()
+        .catch((err) => console.error("[audio] play() rejected", src, err));
       this.fadeFile(0.6, 3000);
       return;
     }
@@ -171,9 +216,11 @@ export class AudioEngine {
     const bar = Math.floor(step / 8);
     const i = step % 8;
     this.bell(mtof(ARP[bar][i]), t, 1.7, 0.1);
-    for (const [m, at] of MELODY[bar]) if (at === i) this.bell(mtof(m), t, 2.6, 0.2);
+    for (const [m, at] of MELODY[bar])
+      if (at === i) this.bell(mtof(m), t, 2.6, 0.2);
     if (i === 0 || i === 4) this.soft(mtof(BASS[bar]), t, EIGHTH * 4, 0.22);
-    if (i === 0) for (const m of PAD[bar]) this.pad(mtof(m), t, EIGHTH * 8, 0.03);
+    if (i === 0)
+      for (const m of PAD[bar]) this.pad(mtof(m), t, EIGHTH * 8, 0.03);
   }
 
   private bell(freq: number, t: number, dur: number, vel: number) {
@@ -269,11 +316,19 @@ export class AudioEngine {
         this.noise(t, 0.9, "bandpass", 900, 3200, 0.22);
         break;
       case "chime":
-        [84, 88, 91, 96].forEach((m, i) => this.ping(mtof(m), t + i * 0.09, 1.8, 0.16));
+        [84, 88, 91, 96].forEach((m, i) =>
+          this.ping(mtof(m), t + i * 0.09, 1.8, 0.16),
+        );
         break;
       case "sparkle": {
         const pent = [88, 91, 93, 96, 100];
-        for (let i = 0; i < 5; i++) this.ping(mtof(pent[Math.floor(Math.random() * pent.length)]), t + i * 0.07, 0.9, 0.07);
+        for (let i = 0; i < 5; i++)
+          this.ping(
+            mtof(pent[Math.floor(Math.random() * pent.length)]),
+            t + i * 0.07,
+            0.9,
+            0.07,
+          );
         break;
       }
       case "candle":
@@ -289,7 +344,14 @@ export class AudioEngine {
     }
   }
 
-  private noise(t: number, dur: number, type: BiquadFilterType, f0: number, f1: number, vol: number) {
+  private noise(
+    t: number,
+    dur: number,
+    type: BiquadFilterType,
+    f0: number,
+    f1: number,
+    vol: number,
+  ) {
     const ctx = this.ctx!;
     const src = ctx.createBufferSource();
     src.buffer = this.noiseBuf;
@@ -345,7 +407,8 @@ export class AudioEngine {
     const buf = ctx.createBuffer(2, len, rate);
     for (let c = 0; c < 2; c++) {
       const d = buf.getChannelData(c);
-      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay);
+      for (let i = 0; i < len; i++)
+        d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay);
     }
     return buf;
   }
