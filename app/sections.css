@@ -79,7 +79,7 @@
   font-size: clamp(1rem, 0.8rem + 1.6vw, 1.6rem);
   letter-spacing: 0.5em;
   text-transform: uppercase;
-  color: var(--gold-light);
+  color: var(--gold-dark);
   padding-left: 0.5em;
 }
 
@@ -87,7 +87,7 @@
   font-family: var(--script);
   font-size: clamp(4.5rem, 2.5rem + 15vw, 10rem);
   line-height: 1.05;
-  color: var(--blush);
+  color: var(--blush-deep);
   text-shadow: 0 0 50px rgba(244, 198, 207, 0.3);
 }
 
@@ -95,7 +95,7 @@
   font-family: var(--serif);
   font-style: italic;
   font-size: 1.2rem;
-  color: var(--blush);
+  color: var(--blush-deep);
 }
 
 .hero__badge {
@@ -243,11 +243,11 @@
   font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold-light);
+  color: var(--gold-dark);
 }
 
 .dot {
-  color: var(--blush);
+  color: var(--blush-deep);
   margin: 0 0.35em;
 }
 
@@ -256,7 +256,7 @@
   margin: 1.5rem auto 2.25rem;
   padding: 1.25rem 1rem 1.5rem;
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(29, 24, 27, 0.8), rgba(20, 17, 19, 0.8));
+  background: linear-gradient(180deg, rgba(255, 246, 243, 0.85), rgba(251, 234, 227, 0.85));
 }
 
 .cal__head {
@@ -282,7 +282,7 @@
   font-style: normal;
   font-size: 0.65rem;
   letter-spacing: 0.1em;
-  color: var(--blush);
+  color: var(--blush-deep);
   padding-bottom: 0.35rem;
 }
 
@@ -297,7 +297,7 @@
 }
 
 .cal__day--on {
-  color: var(--black);
+  color: #fff;
   font-weight: 600;
 }
 
@@ -365,7 +365,7 @@
   font-weight: 500;
   font-size: clamp(1.6rem, 1rem + 4vw, 3rem);
   line-height: 1.1;
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-variant-numeric: tabular-nums;
 }
 
@@ -384,7 +384,7 @@
   font-size: clamp(0.55rem, 0.5rem + 0.3vw, 0.7rem);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--blush);
+  color: var(--blush-deep);
 }
 
 /* ---------- Note ---------- */
@@ -392,7 +392,7 @@
   position: relative;
   padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 5vw, 3rem);
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(244, 198, 207, 0.09), rgba(20, 17, 19, 0.6));
+  background: linear-gradient(180deg, rgba(244, 169, 188, 0.2), rgba(251, 234, 227, 0.6));
 }
 
 .note::before,
@@ -443,7 +443,7 @@
   margin-top: 1.5rem;
   font-family: var(--script);
   font-size: clamp(2.2rem, 1.6rem + 3vw, 3.2rem);
-  color: var(--blush);
+  color: var(--blush-deep);
 }
 
 /* ---------- Program timeline ---------- */
@@ -509,7 +509,7 @@
 .tl__card {
   padding: 1rem 1.25rem;
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(29, 24, 27, 0.85), rgba(20, 17, 19, 0.85));
+  background: linear-gradient(180deg, rgba(255, 246, 243, 0.88), rgba(251, 234, 227, 0.88));
 }
 
 .tl__card b {
@@ -595,7 +595,7 @@
   font-size: clamp(1.4rem, 1.1rem + 1.5vw, 2rem);
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: var(--gold-light);
+  color: var(--gold-dark);
 }
 
 .venue__grid {
@@ -673,8 +673,8 @@
 
 .tabs__btn.is-on {
   background: var(--blush);
-  border-color: var(--blush);
-  color: var(--black);
+  border-color: var(--blush-deep);
+  color: #fff;
 }
 
 .tabs__panel {
@@ -771,7 +771,7 @@
   scroll-snap-align: center;
   padding: 1.75rem 1.25rem 2rem;
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(29, 24, 27, 0.9), rgba(20, 17, 19, 0.9));
+  background: linear-gradient(180deg, rgba(255, 246, 243, 0.92), rgba(251, 234, 227, 0.92));
   opacity: 0.45;
   transform: scale(0.94);
   transition: opacity 0.5s, transform 0.5s var(--ease), border-color 0.5s, box-shadow 0.5s;
@@ -817,7 +817,7 @@
   display: block;
   font-family: var(--serif);
   font-size: 0.85rem;
-  color: var(--blush);
+  color: var(--blush-deep);
 }
 
 .carousel__arrow {
@@ -830,8 +830,8 @@
   transform: translateY(-50%);
   border-radius: 50%;
   border: 1px solid var(--gold);
-  background: rgba(10, 10, 10, 0.8);
-  color: var(--gold-light);
+  background: rgba(255, 246, 243, 0.85);
+  color: var(--gold-dark);
   font-size: 1.6rem;
   line-height: 1;
   cursor: pointer;
@@ -884,7 +884,7 @@
   width: 22px;
   border-radius: 4px;
   background: var(--blush);
-  border-color: var(--blush);
+  border-color: var(--blush-deep);
 }
 
 /* ---------- Wish / cake ---------- */
@@ -1005,7 +1005,7 @@
   margin-top: 1.25rem;
   font-family: var(--script);
   font-size: clamp(2.2rem, 1.6rem + 3vw, 3.4rem);
-  color: var(--gold-light);
+  color: var(--gold-dark);
 }
 
 @media (prefers-reduced-motion: reduce) {
