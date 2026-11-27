@@ -26,44 +26,79 @@ export default function Venue({ photo }: { photo?: string }) {
 
   return (
     <>
-    <Panel id="venue" tone="rose" rouge clusters={["tl", "br"]} butterflies={1}>
-      <Frame>
-        <p className="eyebrow">the</p>
-        <h2 className="script-title">
-          <Letters text="Venue" />
-        </h2>
-        <PhotoSlot src={photo} name="venue" alt={venue.name} shape="wide" optional className="venue__photo" sizes="(max-width: 640px) 80vw, 420px" />
-        <p className="venue__name">{venue.name}</p>
-        <p className="muted">{venue.address}</p>
-        <button className="link" onClick={copy}>
-          {copied ? "Address copied ✓" : "Copy address"}
-        </button>
-      </Frame>
-    </Panel>
+      <Panel
+        id="venue"
+        tone="rose"
+        rouge
+        clusters={["tl", "br"]}
+        butterflies={1}
+      >
+        <Frame>
+          <p className="eyebrow">the</p>
+          <h2 className="script-title">
+            <Letters text="Venue" />
+          </h2>
+          <PhotoSlot
+            src={photo ?? "/art/venue.jpg"}
+            name="venue"
+            alt={venue.name}
+            shape="wide"
+            optional
+            className="venue__photo"
+            sizes="(max-width: 640px) 80vw, 420px"
+          />
+          <p className="venue__name">{venue.name}</p>
+          <p className="muted">{venue.address}</p>
+          <button className="link" onClick={copy}>
+            {copied ? "Address copied ✓" : "Copy address"}
+          </button>
+        </Frame>
+      </Panel>
 
-    <Panel id="map" tone="velvet" clusters={["tr", "bl"]} butterflies={1}>
-      <Frame>
-        <p className="eyebrow">getting there</p>
-        <h2 className="script-title">
-          <Letters text="Directions" />
-        </h2>
-        <div className="venue__map">
-          <iframe src={mapsEmbed} title={`Map to ${venue.name}`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-        </div>
+      <Panel id="map" tone="velvet" clusters={["tr", "bl"]} butterflies={1}>
+        <Frame>
+          <p className="eyebrow">getting there</p>
+          <h2 className="script-title">
+            <Letters text="Directions" />
+          </h2>
+          <div className="venue__map">
+            <iframe
+              src={mapsEmbed}
+              title={`Map to ${venue.name}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="venue__qr" src={qr} alt="QR code with directions to the venue" width={130} height={130} />
-        <small className="muted">Scan for directions</small>
-        <div className="btn-row">
-          <a className="btn" href={mapsLink} target="_blank" rel="noopener noreferrer">
-            Google Maps
-          </a>
-          <a className="btn btn--ghost" href={wazeLink} target="_blank" rel="noopener noreferrer">
-            Waze
-          </a>
-        </div>
-      </Frame>
-    </Panel>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="venue__qr"
+            src={qr}
+            alt="QR code with directions to the venue"
+            width={130}
+            height={130}
+          />
+          <small className="muted">Scan for directions</small>
+          <div className="btn-row">
+            <a
+              className="btn"
+              href={mapsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google Maps
+            </a>
+            <a
+              className="btn btn--ghost"
+              href={wazeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Waze
+            </a>
+          </div>
+        </Frame>
+      </Panel>
     </>
   );
 }

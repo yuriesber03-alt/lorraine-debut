@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useAudio } from "./AudioProvider";
 import { useFx } from "./FxLayer";
-import { useGuest } from "@/lib/hooks";
-import { useArt } from "./ArtContext";
 import { invitation } from "@/config/invitation";
 import { longDate, startDate } from "@/lib/format";
 
@@ -12,10 +10,8 @@ type Phase = "idle" | "crack" | "open" | "rise" | "zoom" | "done";
 
 export default function Cover() {
   const [phase, setPhase] = useState<Phase>("idle");
-  const guest = useGuest();
   const audio = useAudio();
   const fx = useFx();
-  const scene = useArt()["cover-scene"];
   const timers = useRef<number[]>([]);
   const sealRef = useRef<HTMLButtonElement>(null);
   const started = useRef(false);
@@ -44,7 +40,9 @@ export default function Cover() {
     if (started.current) return;
     started.current = true;
     const root = document.documentElement;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     audio.start();
 
@@ -64,100 +62,61 @@ export default function Cover() {
       setPhase("open");
       audio.sfx("paper");
     });
-    later(1700, () => {
+    later(1500, () => {
       setPhase("rise");
       audio.sfx("sparkle");
     });
-    later(3350, () => {
+    later(3200, () => {
       setPhase("zoom");
       audio.sfx("chime");
       root.dataset.phase = "zooming";
     });
-    later(3750, () => {
+    later(3700, () => {
       root.dataset.phase = "live";
       fx.burst(window.innerWidth / 2, window.innerHeight * 0.42, "mix", 1.2);
     });
-    later(4900, finish);
+    later(4800, finish);
   };
 
   if (phase === "done") return null;
 
-  const initial = invitation.firstName.charAt(0);
-
   return (
-    <div className={`cover cover--${phase}`} role="dialog" aria-label="Your invitation">
+    <div
+      className={`cover cover--${phase}`}
+      role="dialog"
+      aria-label="Your invitation"
+    >
       <div className="cover__bg" />
-
-      <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true" focusable="false">
-        <filter id="keyblack" colorInterpolationFilters="sRGB">
-          <feColorMatrix
-            type="matrix"
-            values="1 0 0 0 0
-                    0 1 0 0 0
-                    0 0 1 0 0
-                    -8 -8 -8 0 23.7"
-          />
-        </filter>
-      </svg>
 
       <div className="scene" onClick={open}>
         <p className="cover__kicker">{invitation.coverText}</p>
 
-        {scene && (
-          <button ref={sealRef} className="cscene" onClick={open} aria-label="Open the invitation">
-            <span className="cs">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="cs__b" src={scene} alt="" decoding="async" fetchPriority="high" draggable={false} />
-              <i className="cs__fill" />
-              <span className="cs__sheet">
-                <span className="cs__card">
-                  <small>You&apos;re invited to</small>
-                  <em>Fabulous</em>
-                  <strong>{invitation.firstName}</strong>
-                  <span>at {invitation.age}<sup>th</sup> Birthday</span>
-                  <b>{longDate(startDate)}</b>
-                </span>
-              </span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="cs__a" src={scene} alt="" decoding="async" draggable={false} />
+        <button
+          ref={sealRef}
+          className="cvs"
+          onClick={open}
+          aria-label="Open the invitation"
+        >
+          <span className="cvs__card">
+            <small>You&apos;re invited to</small>
+            <em>Fabulous</em>
+            <strong>{invitation.firstName}</strong>
+            <span>
+              at {invitation.age}
+              <sup>th</sup> Birthday
             </span>
-          </button>
-        )}
-
-        <div className="env" hidden={!!scene}>
-          <div className="env__back" />
-
-          <div className="env__letter">
-            <p className="letter__eyebrow">{guest ? `Dear ${guest},` : "You are invited"}</p>
-            <p className="letter__name">{invitation.firstName}</p>
-            <p className="letter__line">is turning {invitation.age}</p>
-            <i className="letter__rule" />
-            <p className="letter__date">{longDate(startDate)}</p>
-          </div>
-
-          <div className="env__pocket">
-            <svg viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden>
-              <path d="M0 0 L150 116 L300 0" />
-              <path d="M0 200 L138 104" />
-              <path d="M300 200 L162 104" />
-            </svg>
-          </div>
-
-          <div className="env__to">
-            <span>For</span>
-            <strong>{guest || "you"}</strong>
-          </div>
-
-          <div className="env__flap">
-            <div className="env__flap-front" />
-            <div className="env__flap-back" />
-          </div>
-
-          <button ref={scene ? undefined : sealRef} className="seal" onClick={open} aria-label="Break the seal to open the invitation">
-            <span className="seal__half seal__half--l">{initial}</span>
-            <span className="seal__half seal__half--r">{initial}</span>
-          </button>
-        </div>
+            <b>{longDate(startDate)}</b>
+          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="cvs__env"
+            src="/art/env-body.png"
+            alt=""
+            decoding="async"
+            fetchPriority="high"
+            draggable={false}
+          />
+        </button>
 
         <p className="cover__hint">
           <span>Tap the seal to open</span>
