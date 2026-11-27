@@ -1365,3 +1365,49 @@ body.locked { scroll-snap-type: none; }
 
 /* .scene must not isolate the blend */
 .scene { z-index: auto; isolation: auto; }
+/* ===== FINAL ENVELOPE: one static picture, text printed on its blank card ===== */
+.cscene { mix-blend-mode: normal; outline: none; }
+.cscene:focus, .cscene:focus-visible { outline: none; }
+.cs__b,
+.cs__a {
+  clip-path: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  filter: url(#keyblack) saturate(0.92);
+}
+.cs__sheet { transition: none; will-change: auto; }
+.cover--open .cs__sheet,
+.cover--rise .cs__sheet { transform: none; }
+.cs__sheet { z-index: 4; }
+
+.cs__card {
+  left: 24.9%;
+  right: 24.9%;
+  top: 12.6%;
+  height: 22%;
+  padding-top: 3.4cqw;
+  gap: 0.3cqw;
+  background: none;
+  box-shadow: none;
+  justify-content: flex-start;
+}
+.cs__card::before {
+  content: "";
+  position: absolute;
+  inset: 1.4cqw;
+  border: 1px solid rgba(184, 134, 43, 0.75);
+  pointer-events: none;
+}
+.cs__card small { font-size: 2.5cqw; line-height: 1.1; color: #5a2f34; font-weight: 800; }
+.cs__card em { font-size: 3.1cqw; line-height: 1.1; color: #7a4a0e; font-weight: 800; }
+.cs__card strong { font-size: 10cqw; line-height: 0.95; color: #a8680f; text-shadow: 0 1px 0 #fff4d0; }
+.cs__card span { font-size: 2.8cqw; line-height: 1.1; color: #a8445f; font-weight: 800; }
+.cs__card b { font-size: 2.4cqw; line-height: 1.1; color: #5a2f34; font-weight: 800; }
+/* ===== STOPGAP: no filters, soft feathered edges, hide the fake card ===== */
+.cs__b,
+.cs__a {
+  filter: none;
+  -webkit-mask-image: radial-gradient(ellipse 58% 60% at 50% 50%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 58% 60% at 50% 50%, #000 55%, transparent 100%);
+}
+.cs__sheet { display: none; }

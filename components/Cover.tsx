@@ -95,7 +95,7 @@ export default function Cover() {
             values="1 0 0 0 0
                     0 1 0 0 0
                     0 0 1 0 0
-                    2 2 2 0 -0.5"
+                    -8 -8 -8 0 23.7"
           />
         </filter>
       </svg>
