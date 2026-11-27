@@ -1277,3 +1277,91 @@ body.locked { scroll-snap-type: none; }
 /* envelope stopgap: push the beige toward pink */
 .cs__b,
 .cs__a { filter: url(#keyblack) saturate(1.9) hue-rotate(-14deg) brightness(1.04); }
+/* ===== text card inside the envelope ===== */
+.cscene { container-type: inline-size; }
+.cs__a, .cs__fill { display: none; }
+.cs__b { z-index: 3; }
+.cs__sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  pointer-events: none;
+  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.cover--open .cs__sheet { transform: translateY(-16%); }
+.cover--rise .cs__sheet { transform: translateY(-20%); transition-duration: 1.2s; }
+.cs__card {
+  position: absolute;
+  left: 24.9%;
+  right: 24.8%;
+  top: 13%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5cqw;
+  padding-top: 3.4cqw;
+  text-align: center;
+  background: linear-gradient(180deg, #fffdf8, #fbeee6);
+  box-shadow: inset 0 0 0 1px rgba(217, 164, 65, 0.9), inset 0 0 0 2cqw #fffdf8, inset 0 0 0 2.25cqw rgba(217, 164, 65, 0.5);
+}
+.cs__card small {
+  font-family: var(--serif);
+  font-size: 2.2cqw;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6b3a3f;
+}
+.cs__card em {
+  font-family: var(--serif);
+  font-style: normal;
+  font-size: 2.7cqw;
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  padding-left: 0.32em;
+  text-transform: uppercase;
+  color: #7a4a0e;
+}
+.cs__card strong {
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: 9.5cqw;
+  line-height: 1;
+  color: #b07a1c;
+  text-shadow: 0 1px 0 #fff4d0, 0 2px 6px rgba(138, 90, 20, 0.3);
+}
+.cs__card span {
+  font-family: var(--serif);
+  font-size: 2.4cqw;
+  font-weight: 800;
+  color: #a8445f;
+}
+.cs__card span sup { font-size: 0.6em; }
+.cs__card b {
+  font-family: var(--serif);
+  font-size: 2cqw;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5a2f34;
+}
+/* tighten the card so the date isn't cut by the envelope */
+.cs__card { padding-top: 2cqw; gap: 0.15cqw; }
+.cs__card small { font-size: 2.3cqw; line-height: 1.1; }
+.cs__card em { font-size: 2.8cqw; line-height: 1.1; }
+.cs__card strong { font-size: 8cqw; line-height: 0.95; margin: 0; }
+.cs__card span { font-size: 2.5cqw; line-height: 1.1; }
+.cs__card b { font-size: 2.1cqw; line-height: 1.1; }
+/* ===== new white-background envelope: drop the tint, blend the white away ===== */
+.cs__b,
+.cs__a { filter: saturate(0.88); }
+
+/* multiply the whole envelope group onto the pink page: white vanishes */
+.cscene { mix-blend-mode: multiply; }
+
+/* .scene must not isolate the blend */
+.scene { z-index: auto; isolation: auto; }

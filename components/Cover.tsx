@@ -109,6 +109,15 @@ export default function Cover() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className="cs__b" src={scene} alt="" decoding="async" fetchPriority="high" draggable={false} />
               <i className="cs__fill" />
+              <span className="cs__sheet">
+                <span className="cs__card">
+                  <small>You&apos;re invited to</small>
+                  <em>Fabulous</em>
+                  <strong>{invitation.firstName}</strong>
+                  <span>at {invitation.age}<sup>th</sup> Birthday</span>
+                  <b>{longDate(startDate)}</b>
+                </span>
+              </span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className="cs__a" src={scene} alt="" decoding="async" draggable={false} />
             </span>
