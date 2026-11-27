@@ -88,6 +88,18 @@ export default function Cover() {
     <div className={`cover cover--${phase}`} role="dialog" aria-label="Your invitation">
       <div className="cover__bg" />
 
+      <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true" focusable="false">
+        <filter id="keyblack" colorInterpolationFilters="sRGB">
+          <feColorMatrix
+            type="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    2 2 2 0 -0.5"
+          />
+        </filter>
+      </svg>
+
       <div className="scene" onClick={open}>
         <p className="cover__kicker">{invitation.coverText}</p>
 

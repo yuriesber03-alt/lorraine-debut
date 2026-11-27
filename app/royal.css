@@ -37,7 +37,7 @@ body {
   max-width: 520px;
   margin: 0 auto;
   position: relative;
-  box-shadow: 0 0 0 1px rgba(217, 164, 65, 0.25), 0 0 120px rgba(0, 0, 0, 0.9), 0 0 80px rgba(217, 164, 65, 0.1);
+  box-shadow: 0 0 0 1px rgba(217, 164, 65, 0.25), 0 0 70px rgba(244, 169, 188, 0.45), 0 0 80px rgba(217, 164, 65, 0.1);
   background: #fbe3e0;
 }
 
@@ -1163,3 +1163,117 @@ body.locked { scroll-snap-type: none; }
 .cover--open .cs__a { transform: translateY(-16%); }
 .cover--rise .cs__a { transform: translateY(-20%); transition-duration: 1.2s; }
 .env[hidden] { display: none; }
+
+.cs__b,
+.cs__a {
+  filter: url(#keyblack);
+}
+
+/* glowing metallic gold type like the reference */
+.panel[data-art="1"] .hero__name {
+  background: linear-gradient(135deg, #b8862b 0%, #f3dc9b 38%, #d9a441 58%, #b8862b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 14px rgba(235, 203, 130, 0.65));
+  font-size: clamp(4.2rem, 21vw, 5.8rem);
+}
+.panel[data-art="1"] .hero__fab { color: #b8862b; font-size: 0.95rem; font-weight: 600; }
+.panel[data-art="1"] .hero__age { color: #b8862b; font-size: 2.6rem; font-weight: 600; }
+.panel[data-art="1"] .hero__pre,
+.panel[data-art="1"] .hero__bday,
+.panel[data-art="1"] .hero__date { color: #6b3a3f; font-weight: 600; }
+.panel[data-art="1"] .hero__date { font-size: 0.7rem; }
+/* ===== FIT TO THE CIRCLE PANEL (pink balloons) ===== */
+.panel[data-art="1"] {
+  --ink-t: #6b3a3f;
+  --ink-dim: rgba(107, 58, 63, 0.9);
+  --rose-t: #a8445f;
+  --gold-ink: #8a5a14;
+  /* the ring centre is ~65% across and its top edge ~46% of the width down */
+  padding: calc(var(--W) * 0.56) 10% calc(var(--W) * 0.2) 40%;
+}
+.panel#top[data-art="1"] { padding-top: calc(var(--W) * 0.54); }
+#program[data-art="1"] { padding-top: calc(var(--W) * 0.52); }
+
+/* hero text: solid colours (clipped gold text vanishes on animated letters) */
+.panel[data-art="1"] .hero { gap: 0.3rem; }
+.panel[data-art="1"] .hero__pre { color: var(--gold-ink); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.28em; }
+.panel[data-art="1"] .hero__fab { color: var(--gold-ink); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.36em; }
+.panel[data-art="1"] .hero__name {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  filter: none;
+  color: #b07a1c;
+  font-size: clamp(3.4rem, 15vw, 4.4rem);
+  line-height: 1;
+  text-shadow: 0 1px 0 #fff4d0, 0 0 16px rgba(255, 236, 170, 0.9), 0 3px 8px rgba(138, 90, 20, 0.35);
+}
+.panel[data-art="1"] .hero__age { color: var(--gold-ink); font-size: 1.9rem; font-weight: 700; }
+.panel[data-art="1"] .hero__at { color: var(--rose-t); font-size: 1.1rem; }
+.panel[data-art="1"] .hero__bday { color: var(--ink-t); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.4em; }
+.panel[data-art="1"] .hero__date { color: var(--ink-t); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.14em; line-height: 1.7; }
+
+/* other panels: smaller type so it fits inside the ring */
+.panel[data-art="1"] .frame .script-title { font-size: clamp(2rem, 9vw, 2.6rem); color: #b07a1c; text-shadow: 0 1px 0 #fff4d0, 0 0 14px rgba(255, 236, 170, 0.8); }
+.panel[data-art="1"] .frame .eyebrow { font-size: 0.58rem; font-weight: 700; color: var(--rose-t); }
+.panel[data-art="1"] .frame .muted { font-size: 0.82rem; line-height: 1.4; color: var(--ink-dim); font-weight: 500; }
+.panel[data-art="1"] .note__body { font-size: 0.95rem; line-height: 1.4; gap: 0.5rem; }
+.panel[data-art="1"] .tl { gap: 0.4rem; }
+/* ===== READABILITY: thicker, darker, bigger ===== */
+.panel[data-art="1"] .hero__pre,
+.panel[data-art="1"] .hero__fab,
+.panel[data-art="1"] .hero__bday,
+.panel[data-art="1"] .hero__date,
+.panel[data-art="1"] .hero__at {
+  font-weight: 800;
+  -webkit-text-stroke: 0.45px currentColor;
+  text-shadow: 0 0 10px rgba(255, 250, 240, 0.95), 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.panel[data-art="1"] .hero__pre { font-size: 0.7rem; letter-spacing: 0.22em; color: #6b3a3f; }
+.panel[data-art="1"] .hero__fab { font-size: 1.05rem; letter-spacing: 0.3em; color: #7a4a0e; }
+.panel[data-art="1"] .hero__bday { font-size: 0.78rem; letter-spacing: 0.3em; color: #6b3a3f; }
+.panel[data-art="1"] .hero__date { font-size: 0.74rem; letter-spacing: 0.1em; color: #5a2f34; line-height: 1.8; }
+.panel[data-art="1"] .hero__at { font-size: 1.3rem; color: #a8445f; }
+
+/* "18th" was clipped pale gold: force solid deep gold */
+.panel[data-art="1"] .hero__age,
+.panel[data-art="1"] .hero__age * {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: #8a5a14 !important;
+  color: #8a5a14 !important;
+  font-weight: 800;
+  -webkit-text-stroke: 0.6px #8a5a14;
+  text-shadow: 0 0 12px rgba(255, 250, 240, 0.95);
+}
+.panel[data-art="1"] .hero__age { font-size: 3rem; }
+
+.panel[data-art="1"] .hero__name {
+  -webkit-text-stroke: 0.6px #8a5a14;
+  color: #b07a1c;
+  font-size: clamp(3.8rem, 16vw, 4.9rem);
+}
+
+/* all other painted panels */
+.panel[data-art="1"] .frame,
+.panel[data-art="1"] .frame p,
+.panel[data-art="1"] .frame li,
+.panel[data-art="1"] .frame h3 {
+  font-weight: 700;
+  -webkit-text-stroke: 0.3px currentColor;
+  text-shadow: 0 0 10px rgba(255, 250, 240, 0.9);
+}
+.panel[data-art="1"] .frame .muted { font-size: 0.95rem; color: #5a2f34; }
+
+/* cover text */
+.cover__kicker { color: #a8445f; font-weight: 700; -webkit-text-stroke: 0.4px #a8445f; }
+.cover__hint span { color: #7a4a0e; font-weight: 800; -webkit-text-stroke: 0.4px #7a4a0e; opacity: 1; animation: none; }
+.cover__hint small { color: #5a2f34; font-weight: 700; font-size: 1.05rem; }
+
+/* envelope stopgap: push the beige toward pink */
+.cs__b,
+.cs__a { filter: url(#keyblack) saturate(1.9) hue-rotate(-14deg) brightness(1.04); }
